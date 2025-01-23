@@ -1,7 +1,7 @@
 # esp32
 
 > [!NOTE]
-> This fork adds a function to automatically update `imageDigest` and `sha256` to [svelterust/esp32](https://github.com/svelterust/esp32).
+> This fork adds a future to automatically update `imageDigest` and `sha256`.
 > Updates are performed daily by GitHub Actions.
 
 Rust with Xtensa support for Nix using flakes.
