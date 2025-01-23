@@ -4,7 +4,7 @@ on:
     - cron: '50 23 * * *'
 
 jobs:
-  stats-write:
+  update-esp32:
     runs-on: ubuntu-latest
     permissions:
       contents: write
