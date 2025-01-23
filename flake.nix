@@ -8,13 +8,10 @@
     nixpkgs,
   }: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    esp32 = pkgs.dockerTools.pullImage {
-      imageName = "espressif/idf-rust";
-      imageDigest = "sha256:9cbe7a1f59931195d842b1f09ffbc948731cecb657ad47d1c28192905d7b1aa0";
-      sha256 = "sha256-/L1G1XAeGuKtW5+EuczVJL8fNJtWHOZt3NQOJ8c2I7A=";
-      finalImageName = "espressif/idf-rust";
-      finalImageTag = "all_latest";
-    };
+    generated = import ./generated.nix;
+    sources = generated { inherit pkgs; };
+
+    esp32 = sources.esp32;
   in {
     packages.x86_64-linux.esp32 = pkgs.stdenv.mkDerivation {
       name = "esp32";

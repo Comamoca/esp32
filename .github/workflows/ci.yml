@@ -1,0 +1,17 @@
+on: 
+  schedule:
+    - cron: '50 23 * * *'
+
+jobs:
+  stats-write:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v27
+      - run: nix run nixpkgs#nix-prefetch-docker -- --image-name espressif/idf-rust --image-tag all_latest --json > manifetst.json
+      - run: nix run nixpkgs#tera-cli -- --template template.tera manifetst.json > generated.nix
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Automatic updated

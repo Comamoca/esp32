@@ -1,0 +1,9 @@
+{ pkgs }: {
+  esp32 = pkgs.dockerTools.pullImage {
+    imageName = "espressif/idf-rust";
+    imageDigest = "{{ imageDigest }}";
+    sha256 = "{{ hash }}";
+    finalImageName = "espressif/idf-rust";
+    finalImageTag = "all_latest";
+  };
+}
